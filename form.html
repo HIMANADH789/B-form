@@ -1,0 +1,28 @@
+<form id="myForm">
+  <label>Name: <input type="text" name="name" required /></label><br />
+  <label>Email: <input type="email" name="email" required /></label><br />
+  <label>Phone: <input type="tel" name="phone" required /></label><br />
+  <label>Address: <input type="text" name="address" required /></label><br />
+  <label>Date of Birth: <input type="date" name="dob" required /></label><br />
+  <label>Message: <textarea name="message"></textarea></label><br />
+  <button type="submit">Submit</button>
+</form>
+
+
+<script>
+  document.getElementById('myForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const payload = Object.fromEntries(formData);
+
+    const res = await fetch('/api/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    const result = await res.json();
+    alert(result.success ? 'Form submitted!' : 'Error submitting form');
+  });
+</script>
