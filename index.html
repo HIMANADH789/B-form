@@ -16,7 +16,7 @@
     const formData = new FormData(e.target);
     const payload = Object.fromEntries(formData);
 
-    const res = await fetch('/api/submit', {
+    const res = await fetch('https://b-esby.onrender.com/webhook-test/b3d3d773-b52e-448c-8beb-0b6c4643c186', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
